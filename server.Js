@@ -7,7 +7,7 @@ const QRCode = require('qrcode');
 const crypto = require('crypto');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
@@ -180,7 +180,7 @@ app.put('/api/guests/:uniqueId', (req, res) => {
       }
       
       if (this.changes === 0) {
-        return res.status(404).json({ error: 'Guest not found' });
+        return res.status(404).json({ error: 'Guest not found' });n
       }
       
       res.json({
@@ -192,7 +192,7 @@ app.put('/api/guests/:uniqueId', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Backend server running on port ${PORT}`);
   console.log(`📝 API ready to accept requests`);
 });
